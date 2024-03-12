@@ -23,6 +23,7 @@ export const incrementAsync = createAsyncThunk(
     const response = await fetchCount(amount);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
+    console.log('response: ', response);
   }
 );
 
@@ -79,6 +80,6 @@ export const incrementIfOdd =
     if (currentValue % 2 === 1) {
       dispatch(incrementByAmount(amount));
     }
-  };
+};
 
 export default counterSlice.reducer;
