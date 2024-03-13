@@ -33,22 +33,16 @@ function UserInput() {
   const dispatch = useDispatch();
   const userInput = useSelector(selectUserInput);
 
+  // @ts-ignore
   const handleInputChange = (action, value) => {
     dispatch(action(value));
   };
 
-  const handleRegulatoryChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => setRegulatoryStatus(e.target.value);
-
-  const handleSystemChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => setSystemType(e.target.value);
-
+  // @ts-ignore
   const handleSubmit = (e) => {
     e.preventDefault();
     // The userInput is already updated in Redux state, so you can use it directly for whatever needs to be done next
-    console.log(userInput);
+    console.log('this is the userinput', userInput);
     // For example, save to server, navigate to another page, etc.
   };
 
@@ -133,7 +127,7 @@ function UserInput() {
                 <Form.Control
                   type="number"
                   value={userInput.populationDoublingTime}
-                  onChange={(e) => (setPopulationDoublingTime, e.target.value)}
+                  onChange={(e) => handleInputChange(setPopulationDoublingTime, e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -151,8 +145,7 @@ function UserInput() {
                       type="radio"
                       id="ruo"
                       value="RUO"
-                      checked={regulatoryStatus === "RUO"}
-                      onChange={handleRegulatoryChange}
+                      onChange={(e) =>handleInputChange(setRegulatoryStatus, e.target.value)}
                     />
                     <Form.Check
                       inline
@@ -161,8 +154,7 @@ function UserInput() {
                       type="radio"
                       id="gmp"
                       value="GMP"
-                      checked={regulatoryStatus === "GMP"}
-                      onChange={handleRegulatoryChange}
+                      onChange={(e) =>handleInputChange(setRegulatoryStatus, e.target.value)}
                     />
                   </div>
                 </Col>
@@ -176,8 +168,7 @@ function UserInput() {
                       type="radio"
                       id="open"
                       value="Open"
-                      checked={systemStatus === "Open"}
-                      onChange={handleSystemChange}
+                      onChange={(e) =>handleInputChange(setSystemType, e.target.value)}
                     />
                     <Form.Check
                       inline
@@ -186,21 +177,20 @@ function UserInput() {
                       type="radio"
                       id="closed"
                       value="Closed"
-                      checked={systemStatus === "Closed"}
-                      onChange={handleSystemChange}
+                      onChange={(e) =>handleInputChange(setSystemType, e.target.value)}
                     />
                   </div>
                 </Col>
               </Row>
             </Form.Group>
           </ListGroupItem>
-           <ListGroupItem>
+           {/* <ListGroupItem>
            <div className="d-grid gap-2">
-            <Button variant="success">
+            <Button variant="success" onClick={handleSubmit}>
               Submit
             </Button>
             </div>
-          </ListGroupItem>
+          </ListGroupItem> */}
         </Form>
       </ListGroup>
     </Card>

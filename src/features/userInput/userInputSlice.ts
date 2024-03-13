@@ -8,8 +8,8 @@ export interface UserInputState {
   finalCellPopulation: number;
   populationDoublingTime: number;
   seedingDensity: number;
-  regulatoryStatus: 'RUO' | 'GMP';
-  systemType: 'Open' | 'Closed';
+  regulatoryStatus: string;
+  systemType: string;
 }
 
 const initialState: UserInputState = {
@@ -18,8 +18,8 @@ const initialState: UserInputState = {
   finalCellPopulation: 0,
   populationDoublingTime: 0,
   seedingDensity: 0,
-  regulatoryStatus: 'RUO', // Default value
-  systemType: 'Open', // Default value
+  regulatoryStatus: '', // Default value
+  systemType: '', // Default value
 };
 
 export const userInputSlice = createSlice({
@@ -41,10 +41,10 @@ export const userInputSlice = createSlice({
     setSeedingDensity: (state, action: PayloadAction<number>) => {
       state.seedingDensity = action.payload;
     },
-    setRegulatoryStatus: (state, action: PayloadAction<'RUO' | 'GMP'>) => {
+    setRegulatoryStatus: (state, action: PayloadAction<string>) => {
       state.regulatoryStatus = action.payload;
     },
-    setSystemType: (state, action: PayloadAction<'Open' | 'Closed'>) => {
+    setSystemType: (state, action: PayloadAction<string>) => {
       state.systemType = action.payload;
     },
     // Additional reducers can be added here

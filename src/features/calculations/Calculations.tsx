@@ -1,43 +1,37 @@
 import React from 'react';
 import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { selectUserInput } from '../userInput/userInputSlice';
 
-interface CalculationsProps {
-  startingCellPopulation: number;
-  finalCellPopulation: number;
-  populationDoublingTimeHrs: number; // Assuming population doubling time is provided in hours
-  seedingDensity: number;
-  maxCellDensity: number;
-  rep2SeedingDensity: number; // Assuming an additional prop for REP2 seeding density
-  finalCellPopulationRep1: number; // This would be needed for REP1 final population calculation
-  startingCellPopulationRep2: number; // Starting population for REP2
-}
 
-const Calculations: React.FC<CalculationsProps> = ({
-  startingCellPopulation,
-  finalCellPopulation,
-  populationDoublingTimeHrs,
-  seedingDensity,
-  maxCellDensity,
-  rep2SeedingDensity,
-  finalCellPopulationRep1,
-  startingCellPopulationRep2,
-}) => {
-  const log2 = (num: number) => Math.log(num) / Math.log(2);
+function Calculations() {
+
+  const {
+    startingCellPopulation,
+    finalCellPopulation,
+    populationDoublingTime,
+    seedingDensity,
+    // ... add other necessary state variables
+  } = useSelector(selectUserInput);
+
+  const maxCellDensity = 40000000
+ 
+  const rep2SeedingDensity = 500000
 
   // Calculations
   const theoreticalStartingSurfaceArea = startingCellPopulation / seedingDensity;
   const actualStartingSurfaceArea = theoreticalStartingSurfaceArea; // Simplified for this example
   const theoreticalFinalSurfaceArea = finalCellPopulation / maxCellDensity;
   const actualFinalSurfaceArea = theoreticalFinalSurfaceArea; // Simplified for this example
-  const numberOfCellsToSeedRep2 = rep2SeedingDensity * actualStartingSurfaceArea; // Simplification
-  const harvestPassageDensity = 12500000; // Provided as a constant for this example
-  const numberOfPopulationDoublingsForRep1 = log2(finalCellPopulationRep1 / startingCellPopulation);
-  const populationDoublingTimeDays = populationDoublingTimeHrs / 24;
+  const numberOfCellsToSeedRep2 = rep2SeedingDensity * actualFinalSurfaceArea; // Simplification
+  const harvestPassageDensity = numberOfCellsToSeedRep2 / actualStartingSurfaceArea;
+  const numberOfPopulationDoublingsForRep1 = Math.sqrt(harvestPassageDensity / seedingDensity);
+  const populationDoublingTimeDays = populationDoublingTime / 24;
   const rep1DurationDays = numberOfPopulationDoublingsForRep1 * populationDoublingTimeDays;
-  const numberOfPopulationDoublingsForRep2 = log2(finalCellPopulation / startingCellPopulationRep2);
+  const numberOfPopulationDoublingsForRep2 = Math.sqrt(maxCellDensity / seedingDensity);
   const rep2DurationDays = numberOfPopulationDoublingsForRep2 * populationDoublingTimeDays;
   const totalProcessTime = rep1DurationDays + rep2DurationDays; // Simplified, not including additional time
-  const mediaVolumeConsumed = 26; // Provided as a constant for this example, assuming a fixed volume
+  const mediaVolumeConsumed = (theoreticalFinalSurfaceArea + theoreticalStartingSurfaceArea) * 10 / 1000;
 
   // Return a div with the calculations for demonstration purposes
   return (
@@ -70,17 +64,6 @@ const Calculations: React.FC<CalculationsProps> = ({
       </Card.Body>
     </Card>
   );
-};
-
-Calculations.defaultProps = {
-  startingCellPopulation: 50000000,
-  finalCellPopulation: 100000000000,
-  populationDoublingTimeHrs: 24,
-  seedingDensity: 500000,
-  maxCellDensity: 40000000,
-  rep2SeedingDensity: 500000,
-  finalCellPopulationRep1: 2500000000,
-  startingCellPopulationRep2: 1250000000,
 };
 
 export default Calculations;

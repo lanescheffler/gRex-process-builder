@@ -65,14 +65,6 @@ function App() {
         <Row className="mb-3">
           <Col>
             <Calculations
-              startingCellPopulation={0}
-              finalCellPopulation={0}
-              populationDoublingTimeHrs={0}
-              seedingDensity={0}
-              maxCellDensity={0}
-              rep2SeedingDensity={0}
-              finalCellPopulationRep1={0}
-              startingCellPopulationRep2={0}
             />
           </Col>
         </Row>
