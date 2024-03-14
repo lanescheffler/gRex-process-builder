@@ -53,12 +53,7 @@ function App() {
               <ConstantVariables />
             </div>
             <div className="mb-3">
-              <GrexInformation
-                startingSeries={100}
-                finalSeries={100}
-                passageRequired={true}
-                rep2Exists={true}
-              />
+              <GrexInformation />
             </div>
           </Col>
         </Row>
