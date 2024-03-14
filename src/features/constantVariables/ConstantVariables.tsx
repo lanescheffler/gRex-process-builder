@@ -33,7 +33,7 @@ function ConstantVariables() {
   };
 
   return (
-    <Card>
+    <Card className="card text-bg-success">
       <Card.Header as="h5">Constant Variables</Card.Header>
       <ListGroup variant='flush'>
         <Form onSubmit={handleSubmit}>

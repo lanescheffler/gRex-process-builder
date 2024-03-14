@@ -1,12 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
 import { Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { selectUserInput } from '../userInput/userInputSlice';
 import { setTheoreticalStartingSurfaceArea, setActualStartingSurfaceArea, setTheoreticalFinalSurfaceArea, setActualFinalSurfaceArea, setNumberOfCellsToSeedRep2, setHarvestPassageDensity, setNumberOfPopulationDoublingsForRep1, setPopulationDoublingTimeDays, setRep1DurationDays, setNumberOfPopulationDoublingsForRep2, setRep2DurationDays, setTotalProcessTime, setMediaVolumeConsumed, selectCalculations } from './calculationsSlice';
 
 // Performance: If your calculations are expensive and your component re-renders often, 
 // consider using React.memo or useMemo hook to optimize performance.
 
+const StyledCardBody = styled(Card.Body)`
+  background-color: #abe7c0;
+
+`
 
 function Calculations() {
 
@@ -121,33 +126,35 @@ function Calculations() {
   // Return a div with the calculations for demonstration purposes
   
   return (
-    <Card>
+    <Card className="card text-bg-success">
       <Card.Header as="h5">Calculations</Card.Header>
-      <Card.Body>
-        <Row>
-          <Col>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Theoretical Starting Surface Area: {calculations.theoreticalStartingSurfaceArea} cm²</ListGroup.Item>
-              <ListGroup.Item>Actual Starting Surface Area: {calculations.actualStartingSurfaceArea} cm²</ListGroup.Item>
-              <ListGroup.Item>Theoretical Final Surface Area: {calculations.theoreticalFinalSurfaceArea} cm²</ListGroup.Item>
-              <ListGroup.Item>Actual Final Surface Area: {calculations.actualFinalSurfaceArea} cm²</ListGroup.Item>
-              <ListGroup.Item>Number of Cells to Seed REP2: {calculations.numberOfCellsToSeedRep2}</ListGroup.Item>
-              <ListGroup.Item>Harvest/Passage Density: {calculations.harvestPassageDensity} cells/cm²</ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Number of Population Doublings for REP1: {calculations.numberOfPopulationDoublingsForRep1}</ListGroup.Item>
-              <ListGroup.Item>Population Doubling Time (Days): {calculations.populationDoublingTimeDays}</ListGroup.Item>
-              <ListGroup.Item>REP1 Duration (Days): {calculations.rep1DurationDays}</ListGroup.Item>
-              <ListGroup.Item>Number of Population Doublings for REP2: {calculations.numberOfPopulationDoublingsForRep2}</ListGroup.Item>
-              <ListGroup.Item>REP2 Duration (Days): {calculations.rep2DurationDays}</ListGroup.Item>
-              <ListGroup.Item>Total Process Time (Days): {calculations.totalProcessTime}</ListGroup.Item>
-              <ListGroup.Item>Media Volume Consumed (L): {calculations.mediaVolumeConsumed}</ListGroup.Item>
-            </ListGroup>
-          </Col>
-        </Row>
-      </Card.Body>
+      <ListGroup>
+        <StyledCardBody>
+          <Row>
+            <Col>
+              <ListGroup variant="flush">
+                <ListGroup.Item>Theoretical Starting Surface Area: {calculations.theoreticalStartingSurfaceArea} cm²</ListGroup.Item>
+                <ListGroup.Item>Actual Starting Surface Area: {calculations.actualStartingSurfaceArea} cm²</ListGroup.Item>
+                <ListGroup.Item>Theoretical Final Surface Area: {calculations.theoreticalFinalSurfaceArea} cm²</ListGroup.Item>
+                <ListGroup.Item>Actual Final Surface Area: {calculations.actualFinalSurfaceArea} cm²</ListGroup.Item>
+                <ListGroup.Item>Number of Cells to Seed REP2: {calculations.numberOfCellsToSeedRep2}</ListGroup.Item>
+                <ListGroup.Item>Harvest/Passage Density: {calculations.harvestPassageDensity} cells/cm²</ListGroup.Item>
+              </ListGroup>
+            </Col>
+            <Col>
+              <ListGroup variant="flush">
+                <ListGroup.Item>Number of Population Doublings for REP1: {calculations.numberOfPopulationDoublingsForRep1}</ListGroup.Item>
+                <ListGroup.Item>Population Doubling Time (Days): {calculations.populationDoublingTimeDays}</ListGroup.Item>
+                <ListGroup.Item>REP1 Duration (Days): {calculations.rep1DurationDays}</ListGroup.Item>
+                <ListGroup.Item>Number of Population Doublings for REP2: {calculations.numberOfPopulationDoublingsForRep2}</ListGroup.Item>
+                <ListGroup.Item>REP2 Duration (Days): {calculations.rep2DurationDays}</ListGroup.Item>
+                <ListGroup.Item>Total Process Time (Days): {calculations.totalProcessTime}</ListGroup.Item>
+                <ListGroup.Item>Media Volume Consumed (L): {calculations.mediaVolumeConsumed}</ListGroup.Item>
+              </ListGroup>
+            </Col>
+          </Row>
+        </StyledCardBody>
+      </ListGroup>
     </Card>
   );
 };

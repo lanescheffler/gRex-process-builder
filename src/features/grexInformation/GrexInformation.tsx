@@ -33,7 +33,7 @@ function GrexInformation() {
   const rep2Exists = true; // Placeholder
 
   return (
-    <Card>
+    <Card className="card text-bg-success">
       <Card.Header as="h5">G-REX Information</Card.Header>
       <ListGroup variant="flush">
         <ListGroupItem>
