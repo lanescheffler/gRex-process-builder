@@ -11,6 +11,7 @@ function GrexInformation() {
   const theoreticalStartingSurfaceArea = calculations.theoreticalStartingSurfaceArea;
 
   const determineStartingSeries = (area: number) => {
+    console.log(theoreticalStartingSurfaceArea);
     console.log('theoreticalStartingSurfaceArea:', area)
     if (area < 2) return "You need more cells!";
     if (area >= 2 && area < 5) return "2cm² G-Rex option";
