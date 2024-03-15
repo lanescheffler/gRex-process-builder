@@ -74,10 +74,10 @@ function Calculations() {
     const actualFinalSurfaceArea = theoreticalFinalSurfaceArea; // Simplify for this example
     const numberOfCellsToSeedRep2 = rep2SeedingDensity * actualFinalSurfaceArea; // Simplify for this example
     const harvestPassageDensity = numberOfCellsToSeedRep2 / actualStartingSurfaceArea;
-    const numberOfPopulationDoublingsForRep1 = Math.log2(finalCellPopulation / startingCellPopulation); // Example calculation
+    const numberOfPopulationDoublingsForRep1 = Math.sqrt(harvestPassageDensity / seedingDensity); // Example calculation
     const populationDoublingTimeDays = populationDoublingTime / 24;
     const rep1DurationDays = numberOfPopulationDoublingsForRep1 * populationDoublingTimeDays;
-    const numberOfPopulationDoublingsForRep2 = Math.log2(finalCellPopulation / startingCellPopulation); // Simplify for this example
+    const numberOfPopulationDoublingsForRep2 = Math.sqrt(maxCellDensity / seedingDensity); // Simplify for this example
     const rep2DurationDays = numberOfPopulationDoublingsForRep2 * populationDoublingTimeDays;
     const totalProcessTime = rep1DurationDays + rep2DurationDays; // Simplify for this example
     const mediaVolumeConsumed = (theoreticalFinalSurfaceArea + theoreticalStartingSurfaceArea) * 10 / 1000; // Simplify for this example

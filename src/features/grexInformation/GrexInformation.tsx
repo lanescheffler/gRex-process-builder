@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { selectCalculations } from '../calculations/calculationsSlice'; // Adjust the path as needed
+import { determineGRexSeries, calculateSeriesQuantity, isPassageNecessary } from './utils/utils';
 
 
 
@@ -9,44 +10,56 @@ function GrexInformation() {
 
   const calculations = useSelector(selectCalculations);
   const theoreticalStartingSurfaceArea = calculations.theoreticalStartingSurfaceArea;
+  const theoreticalFinalSurfaceArea = calculations.theoreticalFinalSurfaceArea;
 
-  const determineStartingSeries = (area: number) => {
-    console.log(theoreticalStartingSurfaceArea);
-    console.log('theoreticalStartingSurfaceArea:', area)
-    if (area < 2) return "You need more cells!";
-    if (area >= 2 && area < 5) return "2cm² G-Rex option";
-    if (area >= 5 && area < 10) return "5cm² G-Rex option";
-    if (area >= 10 && area < 50) return "10cm² G-Rex option";
-    if (area >= 50 && area < 100) return "50cm² G-Rex option";
-    if (area >= 100 && area < 300) return "100cm² G-Rex option";
-    if (area >= 300 && area < 500) return "300cm² G-Rex option";
-    if (area >= 500) return "500cm² G-Rex option";
-  };
 
-  const startingSeries = determineStartingSeries(theoreticalStartingSurfaceArea);
-  const finalSeries = 500
+  const startingSeries = determineGRexSeries(theoreticalStartingSurfaceArea);
+  const startingSeriesQuantity = calculateSeriesQuantity(startingSeries, theoreticalStartingSurfaceArea);
+
+  const finalSeries = determineGRexSeries(theoreticalFinalSurfaceArea);
+  const finalSeriesQuantity = calculateSeriesQuantity(finalSeries, theoreticalFinalSurfaceArea);
 
   // Assuming passageRequired and rep2Exists are also part of your calculations state or another state,
   // fetch them using useSelector or pass them as props as necessary.
   // For demonstration, I'll assume they're static.
-  const passageRequired = false; // Placeholder
-  const rep2Exists = true; // Placeholder
+  const passageRequired = isPassageNecessary(startingSeries, startingSeriesQuantity, finalSeries , finalSeriesQuantity); // Placeholder
+  // const rep2Exists = true; // Placeholder
 
   return (
     <Card className="card text-bg-success">
       <Card.Header as="h5">G-REX Information</Card.Header>
       <ListGroup variant="flush">
+        {/* Starting G-REX Series */}
         <ListGroupItem>
-          Starting G-REX Series (cm²): {startingSeries}
+          <Row className="align-items-center">
+            <Col xs={6} md={8}>Starting G-REX Series (cm²): {startingSeries} </Col>
+            <Col xs={6} md={4} className="text-end">QUANTITY: {startingSeriesQuantity}</Col>
+          </Row>
         </ListGroupItem>
+        {/* Final G-REX Series */}
         <ListGroupItem>
-          Final G-REX Series (cm²): {finalSeries}
+          <Row className="align-items-center">
+            <Col xs={6} md={8}>Final G-REX Series (cm²): {finalSeries}</Col>
+            <Col xs={6} md={4} className="text-end">QUANTITY: {finalSeriesQuantity}</Col>
+          </Row>
         </ListGroupItem>
+        {/* Is passage necessary */}
         <ListGroupItem>
-          Is passage necessary?: {passageRequired ? 'Yes' : 'No'}
+          <Row className="align-items-center">
+            <Col xs={6} md={8}>Is passage necessary: </Col>
+            <Col xs={6} md={4} className="text-end">
+              {passageRequired ? "Yes" : "No"}
+            </Col>
+          </Row>
         </ListGroupItem>
+        {/* Does REP2 Exist */}
         <ListGroupItem>
-          Does REP2 Exist?: {rep2Exists ? 'Yes' : 'No'}
+          <Row className="align-items-center">
+            <Col xs={6} md={8}>Does REP2 Exist: </Col>
+            <Col xs={6} md={4} className="text-end">
+              {passageRequired ? "Yes" : "No"}
+            </Col>
+          </Row>
         </ListGroupItem>
       </ListGroup>
     </Card>

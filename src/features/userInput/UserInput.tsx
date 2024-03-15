@@ -9,6 +9,8 @@ import {
   Card,
   ListGroup,
   ListGroupItem,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
 import styled from "styled-components";
 import {
@@ -21,6 +23,7 @@ import {
   setSystemType,
   selectUserInput, // Make sure you have a selector that selects the whole userInput part of the state
 } from "./userInputSlice"; // Adjust path as needed
+import { InfoCircle } from "react-bootstrap-icons";
 
 const CustomWidthButton = styled(Button)`
   width: 50%; 
@@ -60,7 +63,9 @@ function UserInput() {
                 <Form.Control
                   as="select"
                   value={userInput.cellType}
-                  onChange={(e) => handleInputChange(setCellType, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(setCellType, e.target.value)
+                  }
                 >
                   {/* Populate your options here */}
                   <option value="">Select Cell Type</option>
@@ -82,7 +87,9 @@ function UserInput() {
                 <Form.Control
                   type="number"
                   value={userInput.startingCellPopulation}
-                  onChange={(e) => handleInputChange(setStartingCellPopulation, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(setStartingCellPopulation, e.target.value)
+                  }
                 />
               </Col>
             </Form.Group>
@@ -92,12 +99,39 @@ function UserInput() {
             <Form.Group as={Row} controlId="formSeedingDensity">
               <Form.Label column sm={4}>
                 Seeding Density (n/cm²)
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip id="button-tooltip">
+                      Click for more info about Seeding Density.
+                    </Tooltip>
+                  }
+                >
+                  <button
+                    style={{
+                      verticalAlign: "top",
+                      paddingRight: ".5rem",
+                      backgroundColor: "transparent",
+                      borderColor: "transparent",
+                      color: "blue",
+                    }}
+                  >
+                    <InfoCircle
+                      style={{
+                        verticalAlign: "top",
+                      }}
+                      size={20}
+                      className="align-items-center"
+                    />
+                  </button>
+                </OverlayTrigger>
               </Form.Label>
               <Col sm={8}>
                 <Form.Control
                   type="number"
                   value={userInput.seedingDensity}
-                  onChange={(e) => handleInputChange(setSeedingDensity, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(setSeedingDensity, e.target.value)
+                  }
                 />
               </Col>
             </Form.Group>
@@ -112,7 +146,9 @@ function UserInput() {
                 <Form.Control
                   type="number"
                   value={userInput.finalCellPopulation}
-                  onChange={(e) => handleInputChange(setFinalCellPopulation, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(setFinalCellPopulation, e.target.value)
+                  }
                 />
               </Col>
             </Form.Group>
@@ -127,7 +163,9 @@ function UserInput() {
                 <Form.Control
                   type="number"
                   value={userInput.populationDoublingTime}
-                  onChange={(e) => handleInputChange(setPopulationDoublingTime, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(setPopulationDoublingTime, e.target.value)
+                  }
                 />
               </Col>
             </Form.Group>
@@ -136,7 +174,7 @@ function UserInput() {
             <Form.Group>
               <Row>
                 <Col sm={12} md={6}>
-                  <Form.Label>Regulatory Status</Form.Label>
+                  <Form.Label>Regulatory Status:</Form.Label>
                   <div key="inline-radio" className="mb-3">
                     <Form.Check
                       inline
@@ -145,7 +183,9 @@ function UserInput() {
                       type="radio"
                       id="ruo"
                       value="RUO"
-                      onChange={(e) =>handleInputChange(setRegulatoryStatus, e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange(setRegulatoryStatus, e.target.value)
+                      }
                     />
                     <Form.Check
                       inline
@@ -154,12 +194,14 @@ function UserInput() {
                       type="radio"
                       id="gmp"
                       value="GMP"
-                      onChange={(e) =>handleInputChange(setRegulatoryStatus, e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange(setRegulatoryStatus, e.target.value)
+                      }
                     />
                   </div>
                 </Col>
                 <Col sm={12} md={6}>
-                  <Form.Label>System Type</Form.Label>
+                  <Form.Label>System Type:</Form.Label>
                   <div key="inline-radio-2" className="mb-3">
                     <Form.Check
                       inline
@@ -168,7 +210,9 @@ function UserInput() {
                       type="radio"
                       id="open"
                       value="Open"
-                      onChange={(e) =>handleInputChange(setSystemType, e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange(setSystemType, e.target.value)
+                      }
                     />
                     <Form.Check
                       inline
@@ -177,14 +221,16 @@ function UserInput() {
                       type="radio"
                       id="closed"
                       value="Closed"
-                      onChange={(e) =>handleInputChange(setSystemType, e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange(setSystemType, e.target.value)
+                      }
                     />
                   </div>
                 </Col>
               </Row>
             </Form.Group>
           </ListGroupItem>
-           {/* <ListGroupItem>
+          {/* <ListGroupItem>
            <div className="d-grid gap-2">
             <Button variant="success" onClick={handleSubmit}>
               Submit
