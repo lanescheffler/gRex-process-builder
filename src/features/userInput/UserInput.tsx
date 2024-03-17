@@ -24,6 +24,7 @@ import {
   selectUserInput, // Make sure you have a selector that selects the whole userInput part of the state
 } from "./userInputSlice"; // Adjust path as needed
 import { InfoCircle } from "react-bootstrap-icons";
+import SeedingDensityCanvas from "./seedingDensityCanvas/SeedingDensityCanvas";
 
 const CustomWidthButton = styled(Button)`
   width: 50%; 
@@ -32,6 +33,11 @@ const CustomWidthButton = styled(Button)`
 
 
 function UserInput() {
+
+  const [showSeedingDensityCanvas, setShowSeedingDensityCanvas] = useState(false);
+  const handleShowSeedingDensityCanvas = () => setShowSeedingDensityCanvas(true);
+  const handleCloseSeedingDensityCanvas = () => setShowSeedingDensityCanvas(false);
+
 
   const dispatch = useDispatch();
   const userInput = useSelector(selectUserInput);
@@ -107,6 +113,7 @@ function UserInput() {
                   }
                 >
                   <button
+                    onClick={handleShowSeedingDensityCanvas}
                     style={{
                       verticalAlign: "top",
                       paddingRight: ".5rem",
@@ -124,6 +131,7 @@ function UserInput() {
                     />
                   </button>
                 </OverlayTrigger>
+                <SeedingDensityCanvas show={showSeedingDensityCanvas} handleClose={handleCloseSeedingDensityCanvas} />
               </Form.Label>
               <Col sm={8}>
                 <Form.Control
