@@ -126,7 +126,7 @@ function Calculations() {
   // Return a div with the calculations for demonstration purposes
   
   return (
-    <Card className="card text-bg-success">
+    <Card style={{ borderRadius: 0 }} className="card text-bg-success">
       <Card.Header as="h5">Calculations</Card.Header>
       <ListGroup>
         <StyledCardBody>

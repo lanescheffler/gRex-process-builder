@@ -56,7 +56,7 @@ function UserInput() {
   };
 
   return (
-    <Card className="card text-bg-success">
+    <Card style={{ borderRadius: 0 }} className="card text-bg-success">
       <Card.Header as="h5">User Input</Card.Header>
       <ListGroup>
         <Form onSubmit={handleSubmit}>

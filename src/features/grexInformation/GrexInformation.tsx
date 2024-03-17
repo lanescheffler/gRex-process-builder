@@ -26,7 +26,7 @@ function GrexInformation() {
   // const rep2Exists = true; // Placeholder
 
   return (
-    <Card className="card text-bg-success">
+    <Card style={{ borderRadius: 0 }} className="card text-bg-success">
       <Card.Header as="h5">G-REX Information</Card.Header>
       <ListGroup variant="flush">
         {/* Starting G-REX Series */}
