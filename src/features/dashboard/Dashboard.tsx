@@ -51,11 +51,11 @@ function Dashboard() {
 
       <Container as="main">
         <Row className="mb-3">
-          <Col md={8}>
+          <Col md={7}>
             {/* Side Column for UserInput and ConstantVariables */}
             <UserInput />
           </Col>
-          <Col md={4}>
+          <Col md={5}>
             {/* Main Column for GrexInformation and Calculations */}
             <div className="mb-3">
               <ConstantVariables />
