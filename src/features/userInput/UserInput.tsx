@@ -76,7 +76,7 @@ function UserInput() {
                   {/* Populate your options here */}
                   <option value="">Select Cell Type</option>
                   <option value="TCR-T">TCR-T</option>
-                  <option value="TCR-T">DD-T</option>
+                  <option value="TCR-T">CAR-T</option>
                   {/* <option value="CAR-T">CAR-T</option> */}
                   {/* More cell types... */}
                 </Form.Control>

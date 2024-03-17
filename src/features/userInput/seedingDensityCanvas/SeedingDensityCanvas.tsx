@@ -1,6 +1,6 @@
 // SeedingDensityCanvas.tsx
 import React from 'react';
-import { Offcanvas, OffcanvasHeader, OffcanvasBody } from 'react-bootstrap';
+import { Offcanvas, OffcanvasHeader, OffcanvasBody, Card } from 'react-bootstrap';
 import styled from 'styled-components';
 
 interface SeedingDensityCanvasProps {
@@ -21,11 +21,13 @@ const SeedingDensityCanvas: React.FC<SeedingDensityCanvasProps> = ({ show, handl
       </OffcanvasHeader>
       <StyledOffCanvasBody>
         {/* Provide your content here */}
-        <p>
-          Seeding density is important for cell culture. It refers to the number of cells
-          planted in a given area. Here's how you can calculate it...
-        </p>
-        {/* ... more content */}
+        {/* <Card style={{ borderRadius: 0 }}> */}
+          <p>
+            Seeding density is important for cell culture. It refers to the number of cells
+            planted in a given area. Here's how you can calculate it...
+          </p>
+          {/* ... more content */}
+        {/* </Card> */}
       </StyledOffCanvasBody>
     </Offcanvas>
   );

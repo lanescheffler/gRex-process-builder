@@ -10,9 +10,7 @@ import { setTheoreticalStartingSurfaceArea, setActualStartingSurfaceArea, setThe
 
 const StyledCardBody = styled(Card.Body)`
   background-color: #abe7c0;
-
 `
-
 function Calculations() {
 
   const dispatch = useDispatch();
