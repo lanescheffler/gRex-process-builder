@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -11,6 +11,11 @@ import { setTheoreticalStartingSurfaceArea, setActualStartingSurfaceArea, setThe
 const StyledCardBody = styled(Card.Body)`
   background-color: #abe7c0;
 `
+const ErrorText = styled.div`
+  color: red;
+  font-size: 12px;
+`;
+
 function Calculations() {
 
   const dispatch = useDispatch();
@@ -24,10 +29,29 @@ function Calculations() {
   } = useSelector(selectUserInput);
   const calculations = useSelector(selectCalculations);
 
-
   const maxCellDensity = 40000000
- 
   const rep2SeedingDensity = 500000
+
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    // Error check for harvest/passage density
+    if (calculations.harvestPassageDensity > maxCellDensity) {
+      setError(
+        "Exceeds the maximum cell density limit."
+      );
+    } else {
+      setError(""); // Clear the error if the condition is no longer met
+    }
+  }, [
+    startingCellPopulation,
+    finalCellPopulation,
+    populationDoublingTime,
+    seedingDensity,
+    dispatch,
+    calculations.harvestPassageDensity,
+    maxCellDensity,
+  ]);
 
   // wrap in a useMemo object, return the consts along with a dependency array. 
   // Calculations
@@ -136,7 +160,13 @@ function Calculations() {
                 <ListGroup.Item>Theoretical Final Surface Area: {calculations.theoreticalFinalSurfaceArea} cm²</ListGroup.Item>
                 <ListGroup.Item>Actual Final Surface Area: {calculations.actualFinalSurfaceArea} cm²</ListGroup.Item>
                 <ListGroup.Item>Number of Cells to Seed REP2: {calculations.numberOfCellsToSeedRep2}</ListGroup.Item>
-                <ListGroup.Item>Harvest/Passage Density: {calculations.harvestPassageDensity} cells/cm²</ListGroup.Item>
+                <ListGroup.Item>
+                  Harvest/Passage Density:
+                  <span style={{ color: error ? 'red' : 'inherit' }}>
+                    {calculations.harvestPassageDensity} cells/cm²
+                  </span>
+                  {error && <ErrorText>{error}</ErrorText>}
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col>

@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import userInputReducer from '../features/userInput/userInputSlice';
 import calculationsReducer from '../features/calculations/calculationsSlice';
+import grexInformationReducer from '../features/grexInformation/grexInformationSlice';
 
 
 
@@ -10,6 +11,7 @@ export const store = configureStore({
     counter: counterReducer,
     userInput: userInputReducer,
     calculations: calculationsReducer,
+    grexInformation: grexInformationReducer,
   },
 });
 
