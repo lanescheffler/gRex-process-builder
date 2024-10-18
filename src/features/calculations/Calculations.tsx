@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectGrexInformation } from '../grexInformation/grexInformationSlice';
 import { selectUserInput } from '../userInput/userInputSlice';
 import { setTheoreticalStartingSurfaceArea, setActualStartingSurfaceArea, setTheoreticalFinalSurfaceArea, setActualFinalSurfaceArea, setNumberOfCellsToSeedRep2, setHarvestPassageDensity, setNumberOfPopulationDoublingsForRep1, setPopulationDoublingTimeDays, setRep1DurationDays, setNumberOfPopulationDoublingsForRep2, setRep2DurationDays, setTotalProcessTime, setMediaVolumeConsumed, selectCalculations } from './calculationsSlice';
 
@@ -28,6 +29,8 @@ function Calculations() {
     // ... add other necessary state variables
   } = useSelector(selectUserInput);
   const calculations = useSelector(selectCalculations);
+
+  const grexInformation = useSelector(selectGrexInformation);
 
   const maxCellDensity = 40000000
   const rep2SeedingDensity = 500000
@@ -91,18 +94,18 @@ function Calculations() {
   
   useEffect(() => {
     const theoreticalStartingSurfaceArea = startingCellPopulation / seedingDensity;
-    const actualStartingSurfaceArea = theoreticalStartingSurfaceArea; // Simplify for this example
+    const actualStartingSurfaceArea = theoreticalStartingSurfaceArea; //TODO: actualStartingSurfaceArea = startingSeriesQuantity / startingSeries
     const theoreticalFinalSurfaceArea = finalCellPopulation / maxCellDensity;
-    const actualFinalSurfaceArea = theoreticalFinalSurfaceArea; // Simplify for this example
+    const actualFinalSurfaceArea = theoreticalFinalSurfaceArea; //TODO: actualFinalSurfaceArea = finalSeriesQuantity / finalSeries
     const numberOfCellsToSeedRep2 = rep2SeedingDensity * actualFinalSurfaceArea; // Simplify for this example
     const harvestPassageDensity = numberOfCellsToSeedRep2 / actualStartingSurfaceArea;
     const numberOfPopulationDoublingsForRep1 = Math.sqrt(harvestPassageDensity / seedingDensity); // Example calculation
     const populationDoublingTimeDays = populationDoublingTime / 24;
     const rep1DurationDays = numberOfPopulationDoublingsForRep1 * populationDoublingTimeDays;
-    const numberOfPopulationDoublingsForRep2 = Math.sqrt(maxCellDensity / seedingDensity); // Simplify for this example
+    const numberOfPopulationDoublingsForRep2 = Math.sqrt(maxCellDensity / seedingDensity);
     const rep2DurationDays = numberOfPopulationDoublingsForRep2 * populationDoublingTimeDays;
-    const totalProcessTime = rep1DurationDays + rep2DurationDays; // Simplify for this example
-    const mediaVolumeConsumed = (theoreticalFinalSurfaceArea + theoreticalStartingSurfaceArea) * 10 / 1000; // Simplify for this example
+    const totalProcessTime = rep1DurationDays + rep2DurationDays; 
+    const mediaVolumeConsumed = (actualFinalSurfaceArea + actualStartingSurfaceArea) * 10 / 1000; // Simplify for this example
 
     // Dispatch actions
     dispatch(setTheoreticalStartingSurfaceArea(theoreticalStartingSurfaceArea));
