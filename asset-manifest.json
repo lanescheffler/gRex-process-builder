@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/login/static/css/main.2ffd3a25.css",
-    "main.js": "/login/static/js/main.e4b31af7.js",
-    "static/js/453.baea8359.chunk.js": "/login/static/js/453.baea8359.chunk.js",
-    "static/media/logo.svg": "/login/static/media/logo.88928a299eabc124c772e8ae14db25ce.svg",
-    "index.html": "/login/index.html",
-    "main.2ffd3a25.css.map": "/login/static/css/main.2ffd3a25.css.map",
-    "main.e4b31af7.js.map": "/login/static/js/main.e4b31af7.js.map",
-    "453.baea8359.chunk.js.map": "/login/static/js/453.baea8359.chunk.js.map"
+    "main.css": "/gRex-process-builder/static/css/main.2ffd3a25.css",
+    "main.js": "/gRex-process-builder/static/js/main.2d14b73e.js",
+    "static/js/453.baea8359.chunk.js": "/gRex-process-builder/static/js/453.baea8359.chunk.js",
+    "static/media/logo.svg": "/gRex-process-builder/static/media/logo.88928a299eabc124c772e8ae14db25ce.svg",
+    "index.html": "/gRex-process-builder/index.html",
+    "main.2ffd3a25.css.map": "/gRex-process-builder/static/css/main.2ffd3a25.css.map",
+    "main.2d14b73e.js.map": "/gRex-process-builder/static/js/main.2d14b73e.js.map",
+    "453.baea8359.chunk.js.map": "/gRex-process-builder/static/js/453.baea8359.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2ffd3a25.css",
-    "static/js/main.e4b31af7.js"
+    "static/js/main.2d14b73e.js"
   ]
 }
